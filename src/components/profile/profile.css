@@ -1,0 +1,58 @@
+.Profile {
+    background-color: #141414;
+    margin: 0;
+    padding: 0;
+}
+
+.Profile > img {
+    height: 45px;
+    width: 140px;
+    margin-left: 20px;
+    padding: 8px;
+    margin-bottom: 60px;
+}
+
+.ProfileDiv {
+    width: 70%;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+}
+
+.ProfileDiv > h1 {
+    color: rgb(255, 255, 255);
+    font-weight: lighter;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.horizontalComp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.ProfileButton {
+    border: 1px solid transparent;
+    border-color: grey;
+    background-color: transparent;
+    color: grey;
+    text-transform: uppercase;
+    padding: .7em 1.5em;
+    letter-spacing: 2px;
+    font-size: 1em;
+    margin-bottom: 150px;
+}
+
+.ProfileButton:hover {
+    border-color: white;
+    color: white;
+}
+
+@media(min-width: 600px) {
+    .ProfileDiv > h1 {
+        font-size: 3.5vw;
+    }
+}
