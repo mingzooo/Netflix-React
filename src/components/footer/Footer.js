@@ -13,7 +13,7 @@ const Footer = () => {
 
     return (
         <div className="footer">
-            <div className="container">
+            <div className="footer-container">
                 <h3>질문이 있으신가요? 문의 전화:  00-308-321-0058</h3>
                 <div className="menu">
                     <ul>{listItem(list1)}</ul>
