@@ -1,11 +1,12 @@
 import React from "react";
 import "./faq.css";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { CSSTransition } from 'react-transition-group'
 
 import { AddIcon, RemoveIcon } from '@material-ui/icons/Add';
-import { CSSTransition } from 'react-transition-group';
 
-const faqComponents = (props) => {
+const FaqComponent = props => {
     const { faqOpenHandler, text, boxOpen, boxText } = props
     return (
         <>
@@ -14,7 +15,7 @@ const faqComponents = (props) => {
                 onClick={faqOpenHandler}
             >
                 <div>{text}</div>
-                <div icon={boxOpen ? RemoveIcon : AddIcon} />
+                <FontAwesomeIcon icon={boxOpen ? RemoveIcon : AddIcon} />
             </div>
 
             <CSSTransition in={boxOpen} classNames="faq-animation" timeout={500} unmountOnExit>
@@ -26,4 +27,4 @@ const faqComponents = (props) => {
     );
 };
 
-export default faqComponents;
+export default FaqComponent;
