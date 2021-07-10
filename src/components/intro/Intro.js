@@ -6,10 +6,10 @@ const IntroComponent = props => {
         <div className="intro-container">
             <div className="container">
                 {topText && (
-                    <h1 style={{ fontSize: fontSize }}>{topText}</h1>
+                    <h1>{topText}</h1>
                 )}
                 {bottomText && (
-                    <h2 style={{ fontSize: fontSize }}>{bottomText}</h2>
+                    <h2>{bottomText}</h2>
                 )}
             </div>
 
