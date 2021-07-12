@@ -55,11 +55,21 @@
           display: none;
           background-color: var(--main-color);
           border-radius: 5px;
+          padding: 10px;
+
+          .profile1{
+            margin: 5px 0;
+          }
+
+          .last{
+            margin: 10px 0;
+            border-bottom: 1px solid white;
+          }
         }
 
         span {
-          padding: 10px;
           cursor: pointer;
+          margin: 5px 0;
         }
 
         &:hover {
