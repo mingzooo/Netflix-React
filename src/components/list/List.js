@@ -13,14 +13,15 @@ const List = ({ category }) => {
     setIsMoved(true);
     let distance = listRef.current.getBoundingClientRect().x - 50;
     if (direction === "left" && slideNumber > 0) {
-      setSlideNumber(slideNumber - 1);
-      listRef.current.style.transform = `translateX(${230 + distance}px)`;
+      setSlideNumber(slideNumber - 5);
+      listRef.current.style.transform = `translateX(${1150 + distance}px)`;
     }
     if (direction === "right" && slideNumber < 5) {
-      setSlideNumber(slideNumber + 1);
-      listRef.current.style.transform = `translateX(${-230 + distance}px)`;
+      setSlideNumber(slideNumber + 5);
+      listRef.current.style.transform = `translateX(${-1150 + distance}px)`;
     }
   };
+
   return (
     <div className="list">
       <span className="listTitle">{category}</span>
@@ -41,6 +42,7 @@ const List = ({ category }) => {
           <ListItem index={7} />
           <ListItem index={8} />
           <ListItem index={9} />
+          <ListItem index={10} />
         </div>
         <ArrowForwardIosOutlined
           className="sliderArrow right"
