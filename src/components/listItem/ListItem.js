@@ -5,12 +5,19 @@ import {
   ThumbUpAltOutlined,
   ThumbDownOutlined,
 } from "@material-ui/icons";
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 
-export default function ListItem({ index }) {
+const ListItem = ({ index }) => {
+  const history = useHistory();
   const [isHovered, setIsHovered] = useState(false);
-  const trailer =
-    "./video/netflix_soon.mp4";
+
+  const goToWatch = () => {
+    history.push("/watch")
+  };
+
+  const trailer = "../video/nf.gif";
   const trailer_logo = "https://occ-0-4831-993.1.nflxso.net/dnm/api/v6/tx1O544a9T7n8Z_G12qaboulQQE/AAAABXskjX1CmmA2wYo11Dk2bdvNIXT2F263vWUUKZZ0Ls9v11rfyeY-2rql6jgLGrYGGK2GRFftmUuzj23BXhQy8Vv243f0ZnwoFTo.webp?r=803";
   return (
     <div
@@ -28,13 +35,14 @@ export default function ListItem({ index }) {
           <video poster={trailer_logo} src={trailer} autoPlay={true} loop type="video/mp4" />
           <div className="itemInfo">
             <div className="icons">
-              <PlayArrow className="icon" />
-              <Add className="icon" />
-              <ThumbUpAltOutlined className="icon" />
-              <ThumbDownOutlined className="icon" />
+              <PlayArrow onClick={goToWatch} className="icon1" />
+              <Add className="icon1" />
+              <ThumbUpAltOutlined className="icon1" />
+              <ThumbDownOutlined className="icon1" />
+              <ExpandMoreIcon className="icon-right" />
             </div>
             <div className="itemInfoTop">
-              <span>98% 일치</span>
+              <span className="green">98% 일치</span>
               <span className="limit">15+</span>
               <span>시즌2개</span>
               <span className="limit">HD</span>
@@ -46,3 +54,5 @@ export default function ListItem({ index }) {
     </div>
   );
 }
+
+export default ListItem;
