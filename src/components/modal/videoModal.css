@@ -1,0 +1,187 @@
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 99;
+    background-color: rgba(0, 0, 0, 0.6);
+    height: auto;
+}
+
+.modal .template{
+    width: 60%;
+    margin:0 auto;
+    border-radius: .3rem;
+    background-color: #181818;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    /* 팝업이 열릴때 스르륵 열리는 효과 */
+    animation: modal-show .3s;
+    overflow: hidden;
+}
+
+.modal .main-container{
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #181818;
+    align-self: center;
+}
+
+.modal .main-container .container{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    background-color: #181818;
+    color: white;
+}
+
+.modal .main-container .container2{
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    background-color: #181818;
+    color: white;
+}
+
+.modal .main-container .container2 span{
+    margin-bottom: 5px;
+}
+
+.modal .main-container .container2 small{
+    color: gray;
+    font-size: 15px;
+}
+
+.container .itemInfoTop {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    color: white;
+}
+
+.itemInfoTop .limit {
+    border: 1px solid gray;
+    padding: 1px 1px;
+    margin: 0 10px;
+}
+
+.itemInfoTop .green {
+    color: rgb(20, 145, 20);
+    padding-right: 10px;
+}
+
+.itemInfoTop span {
+    padding-right: 10px;
+}
+
+.container h4{
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.template .closeIcon{
+    width: 100%;
+    display: flex;
+    position: absolute;
+    justify-content: flex-end;
+    height: 30px;
+    margin: 10px 0;
+}
+
+.closeIcon .cancleIcon{
+    cursor: pointer;
+    border-radius: 50%;
+    margin-right: 7px;
+    font-size: 35px;
+    background-color: white;
+}
+
+.template .image{
+    width: 100%;
+    height: 480px;
+    background-size: cover;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      #181818 100%
+    ),
+    url("https://occ-0-4831-993.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABWct9a4kjiJ-EOHhcIJ786hHdTcO5z_e_NbrUX4ciDHYwv658piQB7wx0VjZkwqdHdDoZ6xTDn1EIIuMju8YrrkkLt60.webp?r=9b9");
+}
+
+.template .info{
+    width: 35%;
+    color: white;
+    display: flex;
+    position: absolute;
+    margin-top: 200px;
+    margin-left: 20px;
+}
+
+.template .buttons{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    margin-top: 400px;
+    justify-content: space-between;
+}
+
+.buttons .left-buttons{
+    display: flex;
+    flex-direction: row;
+    margin: 0 20px;
+}
+
+.buttons .right-buttons{
+    display: flex;
+    margin: 0 20px;
+}
+
+.left-buttons .icon1{
+    color: white;
+    border: 2px solid grey;
+    padding: 5px;
+    border-radius: 50%;
+    margin-right: 7px;
+    font-size: 30px;
+    background-color: rgb(31, 31, 31);
+}
+
+.icon1:hover{
+    border: 2px solid white;
+    cursor: pointer;
+}
+
+
+.modal.openModal {
+    display: flex;
+    align-items: center;
+    /* 팝업이 열릴때 스르륵 열리는 효과 */
+    animation: modal-bg-show .3s;
+}
+
+@keyframes modal-show {
+    from {
+        opacity: 0;
+        margin-top: -50px;
+    }
+    to {
+        opacity: 1;
+        margin-top: 0;
+    }
+}
+@keyframes modal-bg-show {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
