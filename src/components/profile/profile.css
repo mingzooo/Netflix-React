@@ -34,6 +34,20 @@
     flex-wrap: wrap;
 }
 
+.horizontalComp .addProfile{
+    border-radius: 5%;
+    width: 20%;
+    height: 18%;
+    margin: 15px;
+    cursor: pointer;
+    margin-top: -20px;
+    color: gray;
+}
+
+.addProfile:hover{
+    background-color: rgb(175, 175, 175);
+}
+
 .ProfileButton {
     border: 1px solid transparent;
     border-color: grey;

@@ -1,9 +1,12 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import './profile.css';
 import ProfileCard from './ProfileCard';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 
 
 const ProfileModal = () => {
+    const history = useHistory();
 
     const NetflixLogo = "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png";
     const profile1 =
@@ -13,6 +16,10 @@ const ProfileModal = () => {
     const profile3 =
         "https://occ-0-4831-993.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABV5QMl3XdlLGk7lVqErjXtqQUV9RDRhGn4YZzKk2XPtqMJbmE6UMzGRPTeDeUpETn6V3XocrWHYZvp4a6CwYFr7Oi3cZ.png?r=acf";
 
+    const goToBrowse = () => {
+        history.push("/browse")
+    };
+
     return (
         <div className="Profile">
             <img src={NetflixLogo} alt="Logo" />
@@ -20,10 +27,10 @@ const ProfileModal = () => {
                 <h1>넷플릭스를 시청할 프로필을 선택하세요.</h1>
 
                 <div className="horizontalComp">
-                    <ProfileCard profileImage={profile1} username="박민주" />
+                    <ProfileCard onClick={goToBrowse} profileImage={profile1} username="박민주" />
                     <ProfileCard profileImage={profile2} username="Deemo" />
                     <ProfileCard profileImage={profile3} username="키즈" />
-                    <ProfileCard profileImage={profile1} username="프로필추가" />
+                    <AddCircleOutlineIcon className="addProfile" />
                 </div>
 
                 <button className="ProfileButton">
