@@ -5,12 +5,19 @@ import Checkbox from '@material-ui/core/Checkbox';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
+import Footer from "../../components/footer/Footer";
+import { useHistory } from 'react-router-dom';
 
-const Login1 = () => {
+const Login = () => {
+  const history = useHistory();
   const [check, setCheck] = useState({ checkBox: true });
 
   const handleChange = (event) => {
     setCheck({ ...check, [event.target.name]: event.target.checked });
+  };
+
+  const goToProfile = () => {
+    history.push("/profile")
   };
 
   return (
@@ -30,7 +37,7 @@ const Login1 = () => {
             <h1>로그인</h1>
             <input type="email" placeholder="이메일 주소 또는 전화번호" />
             <input type="password" placeholder="비밀번호" />
-            <button>로그인</button>
+            <button onClick={goToProfile}>로그인</button>
             <div className="remember">
               <small>
                 <FormControlLabel
@@ -38,8 +45,9 @@ const Login1 = () => {
                     <Checkbox
                       icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
                       checkedIcon={<CheckBoxIcon fontSize="small" />}
-                      name="checkedI"
-                      color="#13c552"
+                      style={{
+                        color: "white",
+                      }}
                     />
                   }
                   label={<span style={{ fontSize: '13.5px' }}>로그인 정보 저장</span>}
@@ -57,8 +65,9 @@ const Login1 = () => {
           </div>
         </form>
       </div>
+      <Footer />
     </div>
   )
 }
 
-export default Login1;
+export default Login;
