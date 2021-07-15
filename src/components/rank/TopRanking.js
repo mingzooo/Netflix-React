@@ -9,7 +9,9 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import './rankItem.scss';
 
-const RankItem = ({ index, trailer, num, poster }) => {
+const TopRankingComponent = props => {
+    const { id, num, poster, hovered } = props
+
     const history = useHistory();
     const [isHovered, setIsHovered] = useState(false);
 
@@ -20,7 +22,7 @@ const RankItem = ({ index, trailer, num, poster }) => {
     return (
         <div
             className="rankItem"
-            style={{ left: isHovered && index * 225 - 50 + index * 2.5 }}
+            style={{ left: isHovered && (id - 1) * 225 - 50 + (id - 1) * 2.5 }}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
@@ -30,10 +32,10 @@ const RankItem = ({ index, trailer, num, poster }) => {
             {isHovered && (
                 <div>
                     <img
-                        src="https://occ-0-4831-993.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABU0tefpCrB9uLAmyF8d2tnr3yG8d0E_hMCl07ErqviP7R5jPII1KBD_wL77AhkiHcMGv1Idb9wHsBnCAwWynRmnfDy82-abfyH-WXITLM-yFc6WCabWp3bsf1NBp0GuOZIUuULKd6aTEHSl4rUVPRpz7evuLYBT7PcWQhgF2dSKvbWaQpiudI1cn3EtJ.webp?r=84b"
+                        src={hovered}
                         alt=""
                     />
-                    <video src={trailer} autoPlay={true} loop type="video/mp4" />
+                    <video src={hovered} autoPlay={true} loop type="video/mp4" />
                     <div className="itemInfo">
                         <div className="icons">
                             <PlayArrow onClick={goToWatch} className="icon1" />
@@ -55,6 +57,6 @@ const RankItem = ({ index, trailer, num, poster }) => {
 
         </div >
     );
-}
+};
 
-export default RankItem;
+export default TopRankingComponent;
