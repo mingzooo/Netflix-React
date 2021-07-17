@@ -79,6 +79,10 @@ $desktop: "screen and (min-width : 769px)";
       display: flex;
       align-items: center;
 
+      span{
+        margin-left: 10px;
+      }
+
       .icon {
         margin: 0px 15px;
         cursor: pointer;

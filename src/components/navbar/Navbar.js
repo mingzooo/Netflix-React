@@ -1,7 +1,8 @@
-import { ArrowDropDown, Notifications, Search } from "@material-ui/icons";
+import { ArrowDropDown, Notifications } from "@material-ui/icons";
 import { useState } from "react";
 import { useHistory } from "react-router";
 import "./navbar.scss";
+import Search from '../search/Search';
 
 const Navbar = () => {
 
@@ -49,7 +50,8 @@ const Navbar = () => {
           </div>
         </div>
         <div className="right">
-          <Search className="icon" />
+          {/* <Search className="icon" /> */}
+          <Search />
           <span>키즈</span>
           <Notifications className="icon" />
           <img
