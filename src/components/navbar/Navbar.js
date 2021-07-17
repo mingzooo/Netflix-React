@@ -30,11 +30,23 @@ const Navbar = () => {
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png"
             alt=""
           />
-          <span>홈</span>
-          <span onClick={goToTv}>TV프로그램</span>
-          <span onClick={goToTv}>영화</span>
-          <span onClick={goToTv}>NEW!요즘 대세 콘텐츠</span>
-          <span onClick={goToTv}>내가 찜한 콘텐츠</span>
+          <div className="menus">
+            <ArrowDropDown className="menuIcon" />
+            <div className="menuDropdown">
+              <span>홈</span>
+              <span>TV 프로그램</span>
+              <span>영화</span>
+              <span>NEW!요즘 대세 콘텐츠</span>
+              <span>내가 찜한 콘텐츠</span>
+            </div>
+          </div>
+          <div className="menu">
+            <span>홈</span>
+            <span onClick={goToTv}>TV프로그램</span>
+            <span onClick={goToTv}>영화</span>
+            <span onClick={goToTv}>NEW!요즘 대세 콘텐츠</span>
+            <span onClick={goToTv}>내가 찜한 콘텐츠</span>
+          </div>
         </div>
         <div className="right">
           <Search className="icon" />
