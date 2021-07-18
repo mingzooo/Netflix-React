@@ -61,7 +61,7 @@ const Search = () => {
             onExited={() => setSearchIcon(true)}>
             <div className="Holder">
                 <FontAwesomeIcon className="Icon" size="lg" icon={faSearch} />
-                <input autoFocus placeholder="Titles, people, genres"
+                <input autoFocus placeholder="제목, 사람, 장르"
                     onChange={searchTextChangeHandler} value={searchText} />
                 {searchText.length > 0 ?
                     <FontAwesomeIcon onClick={clickCrossHandler} size="lg" icon={faTimes} /> : null
