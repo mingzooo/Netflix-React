@@ -97,14 +97,16 @@
     }
   }
   
-  @media (min-width: 600px) {
+  @media (max-width: 769px) {
     .faqComponent {
-      width: 47%;
+      width: 68%;
+      font-size: 1.2rem;
     }
   }
   
-  @media(min-width: 1650px) {
+  @media(min-width: 769px) {
       .faqComponent {
           font-size: 1.75rem;
+          width: 47%;
         }      
   }

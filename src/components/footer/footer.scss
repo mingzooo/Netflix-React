@@ -1,3 +1,6 @@
+$phone: "only screen and (max-width : 769px)";
+$desktop: "screen and (min-width : 769px)";
+
 .footer{
     width: 100%;
     display: flex;
@@ -25,10 +28,19 @@
             align-items: initial;
             justify-content: space-between;
             margin: 20px 0px;
+
+            @media #{$phone} {
+                margin-left: -10%;
+            }
+
             li{
                 list-style-type: none;
                 margin: 10px;
                 font-size: 13px;
+
+                @media #{$phone} {
+                    width: 100%;
+                }
             }
         }
 

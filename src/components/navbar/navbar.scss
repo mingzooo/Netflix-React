@@ -38,6 +38,7 @@ $desktop: "screen and (min-width : 769px)";
           visibility: hidden;
           @media #{$phone} {
             visibility: visible;
+            cursor: pointer;
           }
         }
 
@@ -81,6 +82,10 @@ $desktop: "screen and (min-width : 769px)";
 
       span{
         margin-left: 10px;
+        
+        @media #{$phone} {
+          width: 30%;
+        }
       }
 
       .icon {

@@ -1,3 +1,6 @@
+$phone: "only screen and (max-width : 769px)";
+$desktop: "screen and (min-width : 769px)";
+
 .main{
     background-color: #222222;
     margin: 0;
@@ -58,9 +61,19 @@
     color: white;
     margin: 100px 0;
 
+    @media #{$phone} {
+      align-items: center;
+      text-align: center;
+      width: 80%;
+      margin: 100px auto;
+    }
+
     h1 {
       font-size: 65px;
       text-align: center;
+      @media #{$phone} {
+        font-size: 55px;
+      }
     }
 
     h2 {
@@ -69,10 +82,14 @@
 
     p {
       font-size: 20px;
+      @media #{$phone} {
+        width: 70%;
+        font-size: 23px;
+      }
     }
 
     .input {
-      width: 48%;
+      width: 50%;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -80,11 +97,22 @@
       height: 70px;
       border-radius: 5px;
 
+      @media #{$phone} {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
       input{
           flex: 9;
           height: 100%;
           border: none;
           padding: 0 10px;
+
+          @media #{$phone} {
+            width:100%;
+            padding: 20px;
+          }
       }
 
       .registerButton{
@@ -95,6 +123,12 @@
           color: white;
           font-size: 25px;
           cursor: pointer;
+
+          @media #{$phone} {
+            font-size: 18px;
+            margin: 10px;
+            padding: 10px;
+          }
       }
     }
   }
@@ -172,11 +206,17 @@ img {
       color: white;
       margin-top: 70px;
       font-size: 20px;
+
+      @media #{$phone} {
+        margin-top: 50px;
+        width: 60%;
+        text-align: center;
+        font-size: 25px;
+      }
     }
 
     .input {
-      width: 48%;
-      background-color: white;
+      width: 50%;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -184,11 +224,22 @@ img {
       height: 70px;
       border-radius: 5px;
 
+      @media #{$phone} {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
       input{
           flex: 9;
           height: 100%;
           border: none;
           padding: 0 10px;
+
+          @media #{$phone} {
+            width:100%;
+            padding: 20px;
+          }
       }
 
       .registerButton{
@@ -199,6 +250,12 @@ img {
           color: white;
           font-size: 22px;
           cursor: pointer;
+
+          @media #{$phone} {
+            font-size: 18px;
+            margin: 10px;
+            padding: 10px;
+          }
       }
     }
   }

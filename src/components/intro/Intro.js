@@ -1,7 +1,7 @@
 import './intro.scss';
 
 const IntroComponent = props => {
-    const { topText, fontSize, bottomText, image } = props
+    const { topText, bottomText, image } = props
     return (
         <div className="intro-container">
             <div className="container">
