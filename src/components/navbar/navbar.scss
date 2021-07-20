@@ -35,9 +35,9 @@ $desktop: "screen and (min-width : 769px)";
         }
   
         .menuIcon{
-          visibility: hidden;
+          display: none;
           @media #{$phone} {
-            visibility: visible;
+            display: flex;
             cursor: pointer;
           }
         }
@@ -66,6 +66,7 @@ $desktop: "screen and (min-width : 769px)";
       .menu{
         span{
           margin-right: 15px;
+          cursor: pointer;
         }
         @media #{$phone} {
           visibility: hidden;

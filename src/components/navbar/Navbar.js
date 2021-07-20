@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useHistory } from "react-router";
 import "./navbar.scss";
 import Search from '../search/Search';
+import { useDispatch } from "react-redux";
+import { logoutUser } from "../../redux/like/actions";
 
 const Navbar = () => {
 
@@ -19,8 +21,23 @@ const Navbar = () => {
     return () => (window.onscroll = null);
   };
 
-  const goToTv = () => {
-    history.push('/browse/tv');
+  const dispatch = useDispatch();
+
+  const onClickHandler = () => {
+    dispatch(logoutUser())
+      .then((res) => {
+        console.log(res);
+        if (res.payload.success) {
+          history.push("/login");
+        } else {
+          alert("로그아웃에 실패하였습니다");
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const goTolike = () => {
+    history.push('/like');
   }
 
   return (
@@ -43,10 +60,10 @@ const Navbar = () => {
           </div>
           <div className="menu">
             <span>홈</span>
-            <span onClick={goToTv}>TV프로그램</span>
-            <span onClick={goToTv}>영화</span>
-            <span onClick={goToTv}>NEW!요즘 대세 콘텐츠</span>
-            <span onClick={goToTv}>내가 찜한 콘텐츠</span>
+            <span>TV프로그램</span>
+            <span>영화</span>
+            <span>NEW!요즘 대세 콘텐츠</span>
+            <span onClick={goTolike}>내가 찜한 콘텐츠</span>
           </div>
         </div>
         <div className="right">
@@ -66,7 +83,7 @@ const Navbar = () => {
               <div className="last">프로필 관리</div>
               <span>계정</span>
               <span>고객센터</span>
-              <span>넷플릭스에서 로그아웃</span>
+              <span onClick={onClickHandler}>넷플릭스에서 로그아웃</span>
             </div>
           </div>
         </div>
