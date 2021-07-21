@@ -1,10 +1,11 @@
 import { ArrowDropDown, Notifications } from "@material-ui/icons";
 import { useState } from "react";
 import { useHistory } from "react-router";
+import { withRouter } from "react-router";
 import "./navbar.scss";
 import Search from '../search/Search';
 import { useDispatch } from "react-redux";
-import { logoutUser } from "../../redux/like/actions";
+import { logoutUser } from "../../redux/login/actions";
 
 const Navbar = () => {
 
@@ -28,6 +29,7 @@ const Navbar = () => {
       .then((res) => {
         console.log(res);
         if (res.payload.success) {
+          alert("로그아웃");
           history.push("/login");
         } else {
           alert("로그아웃에 실패하였습니다");
@@ -92,4 +94,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default withRouter(Navbar);
