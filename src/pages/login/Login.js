@@ -1,54 +1,114 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import "./login.scss";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
+import { TextField } from "@material-ui/core";
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import Footer from "../../components/footer/Footer";
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-
-const Input = styled.input`
-  height: 50px;
-  width: 80%;
-  align-items: center;
-  justify-content: center;
-  border-radius: 5px;
-  background-color: rgb(49, 49, 49);
-  color: white;
-  border: none;
-  margin-bottom: 10px;
-
-  &::placeholder {
-    color: rgb(100, 100, 100);
-  }
-
-`;
+import { AuthenticationContext } from '../../auth/Authentication';
+import { validEmailAndPhoneNumber } from '../../auth/auth';
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../redux/login/actions";
+import { withRouter } from 'react-router';
 
 const Login = () => {
   const history = useHistory();
   const [check, setCheck] = useState({ checkBox: true });
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [pwvalid, setPwvalid] = useState(false);
+  const authContext = useContext(AuthenticationContext);
+  const [form, setForm] = useState({
+    email: {
+      value: '',
+      touched: false,
+      valid: false
+    },
 
-  const handleChange = (event) => {
-    setCheck({ ...check, [event.target.name]: event.target.checked });
-  };
+    password: {
+      value: '',
+      touched: false,
+      valid: false
+    },
 
-  const goToProfile = () => {
-    history.push("/profile")
-  };
-
-  const onChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  useEffect(() => {
-    ((password.length < 4 && password.length >= 1) ? setPwvalid(false) : setPwvalid(true))
-    console.log(pwvalid);
+    onSubmitInvalid: false
   })
+
+  const inputChangeHandler = e => {
+    const { name, value } = e.target;
+    if (name === "email") {
+      setForm(prevForm => ({
+        ...prevForm,
+        email: {
+          ...prevForm.email,
+          value: value, touched: true, valid: value.length > 0 && validEmailAndPhoneNumber(value)
+        }
+      }))
+
+    } else if (name === "password") {
+      setForm(prevForm => ({
+        ...prevForm,
+        password: {
+          ...prevForm.password, value: value, touched: true,
+          valid: value.length >= 4 && value.length <= 60
+        }
+      }))
+    }
+  };
+
+  const fieldBlurHandler = e => {
+    if (e.target.name === 'email') {
+      if (form.email.value === '') {
+        setForm(prevForm => ({
+          ...prevForm,
+          email: { ...prevForm.email, touched: true }
+        }))
+      }
+    }
+
+    if (e.target.name === 'password') {
+      if (form.password.value === '') {
+        setForm(prevForm => ({
+          ...prevForm,
+          password: { ...prevForm.password, touched: true }
+        }))
+      }
+    }
+  };
+
+  let [emailSpan, passwordSpan] = [null, null];
+
+  if ((!form.email.valid && form.email.touched) || (form.onSubmitInvalid && !form.email.valid)) {
+    emailSpan = <small >정확한 이메일 주소나 전화번호를 입력하세요.</small>
+  }
+
+  if ((!form.password.valid && form.password.touched) || (form.onSubmitInvalid && !form.password.valid)) {
+    passwordSpan = <small>비밀번호는 4~60자 사이여야 합니다.</small>
+  }
+
+
+  const dispatch = useDispatch();
+
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    const body = {
+      email: form.email,
+      password: form.password,
+    };
+    dispatch(loginUser(body))
+      .then((res) => {
+        console.log(res);
+        if (res.payload.loginSuccess) {
+          history.push("/profile");
+        } else {
+          alert(res.payload.message);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div className="login">
@@ -62,12 +122,50 @@ const Login = () => {
         </div>
       </div>
       <div className="container">
-        <form>
+        <form onSubmit={onSubmitHandler}>
           <div className="login-container">
             <h1>로그인</h1>
-            <Input type="email" value={email} placeholder="이메일 주소 또는 전화번호" />
-            <Input color={pwvalid ? '' : 'red'} type="password" value={password} placeholder="비밀번호" onChange={onChange} />
-            <button button onClick={goToProfile}>로그인</button>
+            <TextField
+              name="email"
+              label="이메일 주소 또는 전화번호"
+              className="textField"
+              variant="filled"
+              type="text"
+              style={{ backgroundColor: "#333" }}
+              color="secondary"
+              value={form.email.value}
+              onChange={inputChangeHandler}
+              onBlur={fieldBlurHandler}
+              autoComplete="off"
+              inputProps={{ style: { color: "white" } }}
+              InputLabelProps={{
+                style: { color: "#8c8c8c" }
+              }}
+            />
+
+            {emailSpan}
+
+            <TextField
+              name="password"
+              label="비밀번호"
+              className="textField"
+              variant="filled"
+              type="password"
+              style={{ backgroundColor: "#333" }}
+              color="secondary"
+              value={form.password.value}
+              onChange={inputChangeHandler}
+              onBlur={fieldBlurHandler}
+              autoComplete="off"
+              inputProps={{ style: { color: "white" } }}
+              InputLabelProps={{
+                style: { color: "#8c8c8c" }
+              }}
+            />
+
+            {passwordSpan}
+
+            <Button loginInvalid={form.password.valid && form.email.valid} onClick={onSubmitHandler}>로그인</Button>
             <div className="remember">
               <small>
                 <FormControlLabel
@@ -100,4 +198,19 @@ const Login = () => {
   )
 }
 
-export default Login;
+
+const Button = styled.button`
+  margin-top: 30px;
+  margin-bottom: 5px;
+  height: 50px;
+  width: 80%;
+  border-radius: 5px;
+  background-color: ${props => props.loginInvalid ? 'red' : 'rgb(175, 60, 60)'};
+  color: white;
+  border: none;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+`;
+
+export default withRouter(Login);
