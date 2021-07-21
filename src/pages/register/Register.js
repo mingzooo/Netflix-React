@@ -1,5 +1,4 @@
-import { useRef } from "react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "./register.scss";
 import { useHistory } from 'react-router-dom';
 import FaqComponent from "../../components/faq/Faq";
@@ -7,6 +6,8 @@ import Footer from "../../components/footer/Footer";
 import { texualMaterial } from './LandingSectionTexts';
 import IntroComponent from '../../components/intro/Intro';
 import { withRouter } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { registerUser } from "../../redux/login/actions";
 
 const Register = () => {
   const history = useHistory();
@@ -15,6 +16,8 @@ const Register = () => {
 
   const emailRef = useRef();
   const passwordRef = useRef();
+
+  const dispatch = useDispatch();
 
   const darkComponents = texualMaterial.darkComponent.map(darkcomp => (
     <div className="tv-section" key={darkcomp.id}>
@@ -46,29 +49,26 @@ const Register = () => {
     />
   ))
 
-  const onEmailHandler = (e) => {
-    setEmail(e.currentTarget.value);
+  const handleStart = (e) => {
+    setEmail(emailRef.current.value);
   };
 
-  const onPasswordHanlder = (e) => {
-    setPassword(e.currentTarget.value);
+  const handleFinish = (e) => {
+    setPassword(passwordRef.current.value);
   };
+
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    if (Password === ConfirmPasword) {
-      let body = {
-        email: Email,
-        name: Name,
-        password: Password,
-      };
-      dispatch(registerUser(body)).then((res) => {
-        alert("가입이 정상적으로 완료되었습니다");
-        props.history.push("/login");
-      });
-    } else {
-      alert("비밀번호가 일치하지 않습니다");
-    }
+    let body = {
+      email: email,
+      password: password,
+    };
+    dispatch(registerUser(body)).then((res) => {
+      alert("가입이 정상적으로 완료되었습니다");
+      console.log(body);
+      history.push("/login");
+    });
   };
 
   const goToLogin = () => {
@@ -100,15 +100,15 @@ const Register = () => {
           </p>
           {!email ? (
             <div className="input">
-              <input type="email" placeholder="이메일 주소" onChange={onEmailHandler} />
-              <button className="registerButton" onClick={onSubmitHandler}>
+              <input type="email" placeholder="이메일 주소" ref={emailRef} />
+              <button className="registerButton" onClick={handleStart}>
                 시작하기 >
               </button>
             </div>
           ) : (
-            <form className="input">
-              <input type="password" placeholder="password" onChange={onPasswordHanlder} />
-              <button className="registerButton" onClick={onSubmitHandler}>
+            <form className="input" onSubmit={onSubmitHandler}>
+              <input type="password" placeholder="password" ref={passwordRef} />
+              <button className="registerButton" onClick={handleFinish}>
                 Start
               </button>
             </form>
