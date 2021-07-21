@@ -1,5 +1,5 @@
 import { createStore } from 'redux';
-import LikeReducer from './like/reducer';
+import LikeReducer from './login/reducer';
 
 const store = createStore(LikeReducer)
 
