@@ -26,16 +26,6 @@ const Navbar = () => {
 
   const onClickHandler = () => {
     dispatch(logoutUser())
-      .then((res) => {
-        console.log(res);
-        if (res.payload.success) {
-          alert("로그아웃");
-          history.push("/login");
-        } else {
-          alert("로그아웃에 실패하였습니다");
-        }
-      })
-      .catch((err) => console.log(err));
   };
 
   const goTolike = () => {
