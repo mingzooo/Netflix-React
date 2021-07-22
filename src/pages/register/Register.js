@@ -17,6 +17,9 @@ const Register = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
 
+  const emailRef_ = useRef();
+  const passwordRef_ = useRef();
+
   const dispatch = useDispatch();
 
   const darkComponents = texualMaterial.darkComponent.map(darkcomp => (
@@ -49,14 +52,14 @@ const Register = () => {
     />
   ))
 
-  const handleStart = (e) => {
+  const onEmailHandler = () => {
     setEmail(emailRef.current.value);
+    console.log(emailRef);
   };
 
-  const handleFinish = (e) => {
+  const onPasswordHanlder = () => {
     setPassword(passwordRef.current.value);
   };
-
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
@@ -101,14 +104,14 @@ const Register = () => {
           {!email ? (
             <div className="input">
               <input type="email" placeholder="이메일 주소" ref={emailRef} />
-              <button className="registerButton" onClick={handleStart}>
-                시작하기 >
+              <button className="registerButton" onClick={onEmailHandler}>
+                시작하기 &gt;
               </button>
             </div>
           ) : (
             <form className="input" onSubmit={onSubmitHandler}>
               <input type="password" placeholder="password" ref={passwordRef} />
-              <button className="registerButton" onClick={handleFinish}>
+              <button className="registerButton" onClick={onPasswordHanlder}>
                 Start
               </button>
             </form>
@@ -124,15 +127,15 @@ const Register = () => {
         <span>시청할 준비가 되셨나요? 멤버십을 등록하거나 재시작하려면 이메일 주소를 입력하세요.</span>
         {!email ? (
           <div className="input">
-            <input type="email" placeholder="이메일 주소" ref={emailRef} />
-            <button className="registerButton" onClick={handleStart}>
-                시작하기 >
+            <input type="email" placeholder="이메일 주소" ref={emailRef_} />
+            <button className="registerButton" onClick={onEmailHandler}>
+              시작하기 &gt;
             </button>
           </div>
         ) : (
           <form className="input">
-            <input type="password" placeholder="password" ref={passwordRef} />
-            <button className="registerButton" onClick={handleFinish}>
+            <input type="password" placeholder="password" ref={passwordRef_} />
+            <button className="registerButton" onClcik={onPasswordHanlder}>
               Start
             </button>
           </form>

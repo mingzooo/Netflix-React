@@ -1,9 +1,11 @@
 import axios from "axios";
 
 const DOMAIN = "http://localhost:3000";
-axios.defaults.withCredentials = true; // 쿠키 데이터를 전송받기 위해
-export const request = (method, url, data) => {
-    return axios({
+
+async function request(method, url, data) {
+    console.log(DOMAIN + url);
+    console.table(data);
+    return await axios({
         method,
         url: DOMAIN + url,
         data,
@@ -11,3 +13,5 @@ export const request = (method, url, data) => {
         .then((res) => res.data)
         .catch((err) => console.log(err));
 };
+
+export { request };

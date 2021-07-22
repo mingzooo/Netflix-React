@@ -12,10 +12,11 @@ export function registerUser(dataToSubmit) {
 }
 
 export function loginUser(dataToSubmit) {
-    const data = request("post", USER_URL + "/login", dataToSubmit);
+    // const data = request("post", USER_URL + "/login", dataToSubmit);
+    // console.log(data);
     return {
         type: LOGIN_USER,
-        payload: data,
+        payload: dataToSubmit,
     };
 }
 
